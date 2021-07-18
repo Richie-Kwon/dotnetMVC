@@ -26,9 +26,12 @@ namespace TodoList
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ItemContext>(options =>
+            services.AddDbContext<ItemsContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("ItemContext")));
             services.AddRazorPages();
+
+            services.AddDbContext<ItemsContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ItemsContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +52,7 @@ namespace TodoList
             app.UseStaticFiles();
 
             app.UseRouting();
-
+  
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });

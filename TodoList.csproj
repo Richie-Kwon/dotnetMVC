@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Pages\Item" />
+      <Folder Include="Pages\Items" />
     </ItemGroup>
 
 </Project>
