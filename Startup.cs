@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TodoList.Data;
+
 
 namespace TodoList
 {
@@ -27,11 +27,10 @@ namespace TodoList
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ItemsContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("ItemContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("ItemsContext")));
             services.AddRazorPages();
 
-            services.AddDbContext<ItemsContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ItemsContext")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +51,7 @@ namespace TodoList
             app.UseStaticFiles();
 
             app.UseRouting();
-  
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
